@@ -33,6 +33,16 @@ export default class TodoList extends React.Component {
 		this.state.newTitle = "";
 	}
 
+	deleteTodoHandler(todoId) {
+		let filteredTodos = this.state.todos.filter((todo) => {
+			return todo.id !== todoId;
+		});
+
+		this.setState({
+			todos: filteredTodos,
+		});
+	}
+
 	render() {
 		return (
 			<div className="container">
@@ -57,35 +67,19 @@ export default class TodoList extends React.Component {
 				<div className="list-box">
 					<ul className="list">
 						{this.state.todos.map((todo) => (
-							<li className="list__item">
+							<li key={todo.id} className="list__item">
 								{todo.title}
 								<div className="list__item-btns">
-									<button className="todo__del-btn">D</button>
+									<button
+										onClick={this.deleteTodoHandler.bind(this, todo.id)}
+										className="todo__del-btn"
+									>
+										D
+									</button>
 									<button className="todo__com-btn">C</button>
 								</div>
 							</li>
 						))}
-						{/* <li className="list__item">
-							باشکاه
-							<div className="list__item-btns">
-								<button className="todo__del-btn">D</button>
-								<button className="todo__com-btn">C</button>
-							</div>
-						</li>
-						<li className="list__item">
-							کتاب
-							<div className="list__item-btns">
-								<button className="todo__del-btn">D</button>
-								<button className="todo__com-btn">C</button>
-							</div>
-						</li>
-						<li className="list__item">
-							کافه
-							<div className="list__item-btns">
-								<button className="todo__del-btn">D</button>
-								<button className="todo__com-btn">C</button>
-							</div>
-						</li> */}
 					</ul>
 				</div>
 			</div>
