@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
-
-// FIRST WAY TO USE REACT
+import "./index.css"
+import TodoList from './components/TodoList/TodoList'
+// FIRST WAY TO USE REAC
 // ReactDOM.render(
 //     <Main />,
 //     document.getElementById('root')
@@ -12,6 +12,6 @@ import "./index.css";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<React.Fragment>
-
+		<TodoList />
 	</React.Fragment>
 );
