@@ -7,28 +7,41 @@ export default class TodoList extends React.Component {
 	constructor(props) {
 		super(props);
 
-        this.state = {
-            todos: [],
-            newTodo: '',
-            view: 'all'
-
-        }
+		this.state = {
+			todos: [],
+			newTitle: "",
+			hasCompleted: false,
+		};
 	}
 
-    inputHandler(event) {
-        // console.log(event.target.value);
-        this.setState({
-            newTodo: event.target.value
-        })
-    }
+	inputHandler(event) {
+		this.setState({
+			newTitle: event.target.value,
+		});
+	}
+
+	addTodoHandler() {
+		let newTodo = {
+			id: this.state.todos.length + 1,
+			title: this.state.newTitle,
+			hasCompleted: this.state.hasCompleted,
+		};
+		this.state.todos.push(newTodo);
+	}
 
 	render() {
 		return (
 			<div className="container">
 				<Header />
 				<div className="input-box">
-					<input type="text" className="input" onChange={this.inputHandler.bind(this)}/>
-					<button className="add" >+</button>
+					<input
+						type="text"
+						className="input"
+						onChange={this.inputHandler.bind(this)}
+					/>
+					<button className="add" onClick={this.addTodoHandler.bind(this)}>
+						+
+					</button>
 				</div>
 				<select className="select">
 					<option value="همه">همه</option>
