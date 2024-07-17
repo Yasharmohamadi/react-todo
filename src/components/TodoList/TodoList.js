@@ -26,7 +26,11 @@ export default class TodoList extends React.Component {
 			title: this.state.newTitle,
 			hasCompleted: this.state.hasCompleted,
 		};
-		this.state.todos.push(newTodo);
+		this.setState({
+			todos: [...this.state.todos, newTodo],
+		});
+
+		this.state.newTitle = "";
 	}
 
 	render() {
@@ -38,20 +42,30 @@ export default class TodoList extends React.Component {
 						type="text"
 						className="input"
 						onChange={this.inputHandler.bind(this)}
+						value={this.state.newTitle}
 					/>
 					<button className="add" onClick={this.addTodoHandler.bind(this)}>
 						+
 					</button>
 				</div>
 				<select className="select">
-					<option value="همه">همه</option>
-					<option value="کامل شده ها">کامل شده ها</option>
-					<option value="در حال انجام">در حال انجام</option>
+					<option value="all">همه</option>
+					<option value="completed">کامل شده ها</option>
+					<option value="notCompleted">در حال انجام</option>
 				</select>
 
 				<div className="list-box">
 					<ul className="list">
-						<li className="list__item">
+						{this.state.todos.map((todo) => (
+							<li className="list__item">
+								{todo.title}
+								<div className="list__item-btns">
+									<button className="todo__del-btn">D</button>
+									<button className="todo__com-btn">C</button>
+								</div>
+							</li>
+						))}
+						{/* <li className="list__item">
 							باشکاه
 							<div className="list__item-btns">
 								<button className="todo__del-btn">D</button>
@@ -71,7 +85,7 @@ export default class TodoList extends React.Component {
 								<button className="todo__del-btn">D</button>
 								<button className="todo__com-btn">C</button>
 							</div>
-						</li>
+						</li> */}
 					</ul>
 				</div>
 			</div>
