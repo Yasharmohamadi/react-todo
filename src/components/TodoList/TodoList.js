@@ -6,15 +6,29 @@ import "./TodoList.css";
 export default class TodoList extends React.Component {
 	constructor(props) {
 		super(props);
+
+        this.state = {
+            todos: [],
+            newTodo: '',
+            view: 'all'
+
+        }
 	}
+
+    inputHandler(event) {
+        // console.log(event.target.value);
+        this.setState({
+            newTodo: event.target.value
+        })
+    }
 
 	render() {
 		return (
 			<div className="container">
 				<Header />
 				<div className="input-box">
-					<input type="text" class="input" />
-					<button className="add">+</button>
+					<input type="text" className="input" onChange={this.inputHandler.bind(this)}/>
+					<button className="add" >+</button>
 				</div>
 				<select className="select">
 					<option value="همه">همه</option>
@@ -22,27 +36,27 @@ export default class TodoList extends React.Component {
 					<option value="در حال انجام">در حال انجام</option>
 				</select>
 
-				<div class="list-box">
-					<ul class="list">
-						<li class="list__item">
+				<div className="list-box">
+					<ul className="list">
+						<li className="list__item">
 							باشکاه
-							<div class="list__item-btns">
-								<button class="todo__del-btn">D</button>
-								<button class="todo__com-btn">C</button>
+							<div className="list__item-btns">
+								<button className="todo__del-btn">D</button>
+								<button className="todo__com-btn">C</button>
 							</div>
 						</li>
-						<li class="list__item">
+						<li className="list__item">
 							کتاب
-							<div class="list__item-btns">
-								<button class="todo__del-btn">D</button>
-								<button class="todo__com-btn">C</button>
+							<div className="list__item-btns">
+								<button className="todo__del-btn">D</button>
+								<button className="todo__com-btn">C</button>
 							</div>
 						</li>
-						<li class="list__item">
+						<li className="list__item">
 							کافه
-							<div class="list__item-btns">
-								<button class="todo__del-btn">D</button>
-								<button class="todo__com-btn">C</button>
+							<div className="list__item-btns">
+								<button className="todo__del-btn">D</button>
+								<button className="todo__com-btn">C</button>
 							</div>
 						</li>
 					</ul>

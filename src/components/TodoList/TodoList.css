@@ -63,10 +63,13 @@ body {
 	padding: 5px 10px;
 	width: 306px;
 	margin: 20px 0 20px 0;
+	font-size: 25px;
 }
 
 option {
 	padding: 15px;
+	font-size: 20px;
+	/* background: #077d9b; */
 }
 
 
@@ -81,6 +84,8 @@ option {
 .list {
 	list-style-type: none;
 	color: #000;
+	font-size: 25px;
+
 }
 .list__item {
 	background: #fff;
