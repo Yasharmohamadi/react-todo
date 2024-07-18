@@ -10,7 +10,7 @@ export default class TodoList extends React.Component {
 		this.state = {
 			todos: [],
 			newTitle: "",
-			hasCompleted: false,
+			view: "all",
 		};
 	}
 
@@ -24,13 +24,14 @@ export default class TodoList extends React.Component {
 		let newTodo = {
 			id: this.state.todos.length + 1,
 			title: this.state.newTitle,
-			hasCompleted: this.state.hasCompleted,
+			hasCompleted: false,
 		};
-		this.setState({
-			todos: [...this.state.todos, newTodo],
+		this.setState((prevState) => {
+			return {
+				todos: [...this.state.todos, newTodo],
+				newTitle: "",
+			};
 		});
-
-		this.state.newTitle = "";
 	}
 
 	deleteTodoHandler(todoId) {
@@ -40,6 +41,20 @@ export default class TodoList extends React.Component {
 
 		this.setState({
 			todos: filteredTodos,
+		});
+	}
+
+	completeTodoHandler(todoId) {
+		let newTodos = [...this.state.todos];
+
+		newTodos.forEach((todo) => {
+			if (todo.id === todoId) {
+				todo.hasCompleted = !todo.hasCompleted;
+			}
+		});
+
+		this.setState({
+			todos: newTodos,
 		});
 	}
 
@@ -63,23 +78,15 @@ export default class TodoList extends React.Component {
 					<option value="completed">کامل شده ها</option>
 					<option value="notCompleted">در حال انجام</option>
 				</select>
-
 				<div className="list-box">
 					<ul className="list">
 						{this.state.todos.map((todo) => (
-                            <Todo key={todo.id} todo={todo} onClick={this.deleteTodoHandler.bind(this, todo.id)}/>
-							// <li  className="list__item">
-							// 	{todo.title}
-							// 	<div className="list__item-btns">
-							// 		<button
-							// 			onClick={this.deleteTodoHandler.bind(this, todo.id)}
-							// 			className="todo__del-btn"
-							// 		>
-							// 			D
-							// 		</button>
-							// 		<button className="todo__com-btn">C</button>
-							// 	</div>
-							// </li>
+							<Todo
+								key={todo.id}
+								todo={todo}
+								onDelete={this.deleteTodoHandler.bind(this)}
+								onComplete={this.completeTodoHandler.bind(this)}
+							/>
 						))}
 					</ul>
 				</div>

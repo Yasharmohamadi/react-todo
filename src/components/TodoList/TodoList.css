@@ -138,3 +138,7 @@ option {
 	background: #fff;
 	color: #9b0c0c;
 }
+
+.completed {
+	opacity: 0.5;
+}
