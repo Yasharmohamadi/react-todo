@@ -36,6 +36,12 @@ export default class Todo extends React.Component {
 		console.log("Todo : componentDidMount ");
 	}
 
+	shouldComponentUpdate () {
+		console.log('Todo : shouldUpdateComponent');
+
+		return true
+	}
+
 	render() {
 		console.log("Todo : render ");
 

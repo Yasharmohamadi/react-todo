@@ -71,6 +71,13 @@ export default class TodoList extends React.Component {
 
 	}
 
+	shouldComponentUpdate () {
+		console.log('TodoList : shouldUpdateComponent');
+
+		return true
+
+	}
+
 	render() {
 		console.log('TodoList : render ');
 		return (
