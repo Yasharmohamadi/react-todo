@@ -36,15 +36,18 @@ export default class Todo extends React.Component {
 		console.log("Todo : componentDidMount ");
 	}
 
-	shouldComponentUpdate () {
-		console.log('Todo : shouldUpdateComponent');
-
-		return true
+	componentDidUpdate() {
+		console.log("Todo : componentDidUpdate");
 	}
 
-	
+	shouldComponentUpdate() {
+		console.log("Todo : shouldUpdateComponent");
+
+		return true;
+	}
+
 	getSnapshotBeforeUpdate(props, state) {
-		console.log('TodoList : getSnapshotBeforeUpdate', props, state);
+		console.log("TodoList : getSnapshotBeforeUpdate", props, state);
 	}
 
 	render() {
