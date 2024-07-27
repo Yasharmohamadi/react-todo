@@ -15,7 +15,7 @@ export default class Todo extends React.Component {
 	}
 
 	static getDerivedStateFromProps(props, state) {
-		console.log("Todo : getDrivedStateFromProps");
+		console.log("Todo : getDrivedStateFromProps", props, state);
 
 		return {
 			todoID: props.id,
@@ -40,6 +40,11 @@ export default class Todo extends React.Component {
 		console.log('Todo : shouldUpdateComponent');
 
 		return true
+	}
+
+	
+	getSnapshotBeforeUpdate(props, state) {
+		console.log('TodoList : getSnapshotBeforeUpdate', props, state);
 	}
 
 	render() {
