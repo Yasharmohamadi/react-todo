@@ -15,7 +15,12 @@ export default class TodoList extends React.Component {
 
 		console.log('TodoList : constructor ');
 	}
-
+	
+	static getDerivedStateFromProps () {
+		console.log('TodoList : getDrivedStateFromProps ');
+		return null
+		
+	}
 
 	inputHandler(event) {
 		this.setState({

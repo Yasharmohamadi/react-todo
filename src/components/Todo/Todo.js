@@ -4,8 +4,24 @@ import React from "react";
 export default class Todo extends React.Component {
 	constructor(props) {
 		super(props);
-		
+
+		this.state = {
+			todoID: null,
+			todoTitle: "",
+			todoComplete: null,
+		};
+
 		console.log("Todo : constructor");
+	}
+
+	static getDerivedStateFromProps(props, state) {
+		console.log("Todo : getDrivedStateFromProps");
+
+		return {
+			todoID: props.id,
+			todoTitle: props.title,
+			todoComplete: props.hasCompleted,
+		};
 	}
 
 	removeClickHandler(id) {
@@ -19,12 +35,12 @@ export default class Todo extends React.Component {
 	render() {
 		return (
 			<li
-				className={`list__item ${this.props.hasCompleted ? "completed" : ""}`}
+				className={`list__item ${this.state.todoComplete ? "completed" : ""}`}
 			>
-				{this.props.title}
+				{this.state.todoTitle}
 				<div className="list__item-btns">
 					<button
-						onClick={this.removeClickHandler.bind(this, this.props.id)}
+						onClick={this.removeClickHandler.bind(this, this.state.todoID)}
 						className="todo__del-btn"
 					>
 						D
@@ -32,7 +48,7 @@ export default class Todo extends React.Component {
 
 					<button
 						className="todo__com-btn"
-						onClick={this.completeClickHandler.bind(this, this.props.id)}
+						onClick={this.completeClickHandler.bind(this, this.state.todoID)}
 					>
 						C
 					</button>
