@@ -36,8 +36,8 @@ export default class Todo extends React.Component {
 		console.log("Todo : componentDidMount ");
 	}
 
-	componentDidUpdate() {
-		console.log("Todo : componentDidUpdate");
+	componentDidUpdate(props, state, data) {
+		console.log("Todo : componentDidUpdate", data);
 	}
 
 	shouldComponentUpdate() {
@@ -48,6 +48,8 @@ export default class Todo extends React.Component {
 
 	getSnapshotBeforeUpdate(props, state) {
 		console.log("TodoList : getSnapshotBeforeUpdate", props, state);
+
+		return 0
 	}
 
 	render() {
