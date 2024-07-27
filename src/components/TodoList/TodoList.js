@@ -3,7 +3,7 @@ import Header from "../Header/Header";
 import Todo from "../Todo/Todo";
 import "./TodoList.css";
 
-export default class TodoList extends React.PureComponent {
+export default class TodoList extends React.Component {
 	constructor(props) {
 		super(props);
 
