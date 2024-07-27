@@ -12,7 +12,10 @@ export default class TodoList extends React.Component {
 			newTitle: "",
 			view: "all",
 		};
+
+		console.log('TodoList : constructor ');
 	}
+
 
 	inputHandler(event) {
 		this.setState({
@@ -83,7 +86,7 @@ export default class TodoList extends React.Component {
 						{this.state.todos.map((todo) => (
 							<Todo
 								key={todo.id}
-								todo={todo}
+								{...todo}
 								onDelete={this.deleteTodoHandler.bind(this)}
 								onComplete={this.completeTodoHandler.bind(this)}
 							/>
