@@ -32,7 +32,13 @@ export default class Todo extends React.Component {
 		this.props.onComplete(id);
 	}
 
+	componentDidMount() {
+		console.log("Todo : componentDidMount ");
+	}
+
 	render() {
+		console.log("Todo : render ");
+
 		return (
 			<li
 				className={`list__item ${this.state.todoComplete ? "completed" : ""}`}

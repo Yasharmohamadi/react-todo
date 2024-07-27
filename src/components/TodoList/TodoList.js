@@ -66,7 +66,13 @@ export default class TodoList extends React.Component {
 		});
 	}
 
+	componentDidMount () {
+		console.log('TodoList : componentDidMount ');
+
+	}
+
 	render() {
+		console.log('TodoList : render ');
 		return (
 			<div className="container">
 				<Header />
