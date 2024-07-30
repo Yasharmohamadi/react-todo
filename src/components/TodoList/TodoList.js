@@ -45,6 +45,10 @@ export default function TodoList() {
 		setTodos(newTodos);
 	};
 
+	const viewHandler = (event) => {
+		setView(event.target.value)
+	}
+
 	return (
 		<div className="container">
 			<Header />
@@ -59,21 +63,48 @@ export default function TodoList() {
 					+
 				</button>
 			</div>
-			<select className="select">
+			<select className="select" onChange={(event) => viewHandler(event)}>
 				<option value="all">همه</option>
 				<option value="completed">کامل شده ها</option>
 				<option value="notCompleted">در حال انجام</option>
 			</select>
 			<div className="list-box">
 				<ul className="list">
-					{todos.map((todo) => (
-						<Todo
-							key={todo.id}
-							{...todo}
-							onDelete={() => deleteTodoHandler(todo.id)}
-							onComplete={() => completeTodoHandler(todo.id)}
-						/>
-					))}
+
+					{view === "all" &&
+						todos.map((todo) => (
+							<Todo
+								key={todo.id}
+								{...todo}
+								onDelete={() => deleteTodoHandler(todo.id)}
+								onComplete={() => completeTodoHandler(todo.id)}
+							/>
+						))}
+
+					{view === "completed" &&
+						todos
+							.filter((todo) => todo.hasCompleted)
+							.map((todo) => (
+								<Todo
+									key={todo.id}
+									{...todo}
+									onDelete={() => deleteTodoHandler(todo.id)}
+									onComplete={() => completeTodoHandler(todo.id)}
+								/>
+							))
+							}
+
+					{view === "notCompleted" &&
+						todos
+							.filter((todo) => !todo.hasCompleted)
+							.map((todo) => (
+								<Todo
+									key={todo.id}
+									{...todo}
+									onDelete={() => deleteTodoHandler(todo.id)}
+									onComplete={() => completeTodoHandler(todo.id)}
+								/>
+							))}
 				</ul>
 			</div>
 		</div>
