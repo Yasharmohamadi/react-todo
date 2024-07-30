@@ -1,81 +1,33 @@
 import "./Todo.css";
-import React from "react";
+import React, { useState } from "react";
 
-export default class Todo extends React.Component {
-	constructor(props) {
-		super(props);
+export default function Todo(props) {
+	const removeClickHandler = (id) => {
+		props.onDelete(id);
+	};
 
-		this.state = {
-			todoID: null,
-			todoTitle: "",
-			todoComplete: null,
-		};
+	const completeClickHandler = (id) => {
+		props.onComplete(id);
+	};
 
-		console.log("Todo : constructor");
-	}
+	return (
+		<li className={`list__item ${props.hasCompleted ? "completed" : ""}`}>
+			{props.title}
+			<div className="list__item-btns">
+				<button
+					onClick={() => removeClickHandler(props.id)}
+					className="todo__del-btn"
+				>
+					D
+				</button>
 
-	static getDerivedStateFromProps(props, state) {
-		console.log("Todo : getDrivedStateFromProps", props, state);
-
-		return {
-			todoID: props.id,
-			todoTitle: props.title,
-			todoComplete: props.hasCompleted,
-		};
-	}
-
-	removeClickHandler(id) {
-		this.props.onDelete(id);
-	}
-
-	completeClickHandler(id) {
-		this.props.onComplete(id);
-	}
-
-	componentDidMount() {
-		console.log("Todo : componentDidMount ");
-	}
-
-	componentDidUpdate(props, state, data) {
-		console.log("Todo : componentDidUpdate", data);
-	}
-
-	shouldComponentUpdate() {
-		console.log("Todo : shouldUpdateComponent");
-
-		return true;
-	}
-
-	getSnapshotBeforeUpdate(props, state) {
-		console.log("TodoList : getSnapshotBeforeUpdate", props, state);
-
-		return 0
-	}
-
-	render() {
-		console.log("Todo : render ");
-
-		return (
-			<li
-				className={`list__item ${this.state.todoComplete ? "completed" : ""}`}
-			>
-				{this.state.todoTitle}
-				<div className="list__item-btns">
-					<button
-						onClick={this.removeClickHandler.bind(this, this.state.todoID)}
-						className="todo__del-btn"
-					>
-						D
-					</button>
-
-					<button
-						className="todo__com-btn"
-						onClick={this.completeClickHandler.bind(this, this.state.todoID)}
-					>
-						C
-					</button>
-				</div>
-			</li>
-		);
-	}
+				<button
+					className="todo__com-btn"
+					onClick={() => completeClickHandler(props.id)}
+				>
+					C
+				</button>
+			</div>
+		</li>
+	);
 }
